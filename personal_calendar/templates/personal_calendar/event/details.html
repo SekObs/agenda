@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<h1>{{event.nom}}</h1>
+<p>{{event.description}}</p>
+<p>le {{event.date}}</p>
+<p>à {{event.lieu}}</p>
+{% for participant in event.evenement_participant_set.all %}
+{{participant.participant}} {{participant.get_status_display}}
+<form action="/agenda/{{event.id}}/participant/{{participant.id}}/delete/"
+      method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Supprimer"/>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+</form>
+</p>
+{% endfor %}
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Créer"/>
+</form>
+<form action="/agenda/{{event.id}}/delete/"
+      method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Supprimer"/>
+</form>
+<a href="/agenda/{{event.id}}/update/">Modifier</a>
+</html>

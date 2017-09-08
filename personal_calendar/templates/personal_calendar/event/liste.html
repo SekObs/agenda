@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block titre %}
+        | Liste des événements
+        {% endblock titre %}
+    </title>
+</head>
+<body>
+<ul>
+    {% for event in events %}
+    <li>
+        <h3><a href="{{event.get_absolute_url}}">{{event.nom}}</a></h3>
+        <p>le {{event.date}}</p>
+        <p>à {{event.lieu}}</p>
+        {% endfor %}
+</ul>
+<p>
+    <a href="/agenda/create/">Créer un nouvel événement</a>
+</p>
+</body>
+</html>
